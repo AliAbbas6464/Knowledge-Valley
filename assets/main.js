@@ -37,16 +37,39 @@ document.addEventListener('DOMContentLoaded', function () {
   var navToggle = document.querySelector('.nav-toggle');
   var navLinks = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
-    navToggle.addEventListener('click', function () {
-      navToggle.classList.toggle('open');
-      navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+    function openMenu() {
+      navToggle.classList.add('open');
+      navLinks.classList.add('open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden'; // lock background scroll on real devices
+    }
+    function closeMenu() {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    navToggle.setAttribute('type', 'button');
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (navLinks.classList.contains('open')) { closeMenu(); } else { openMenu(); }
     });
     navLinks.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        navToggle.classList.remove('open');
-        navLinks.classList.remove('open');
-      });
+      a.addEventListener('click', closeMenu);
+    });
+    // Close when tapping outside the open menu (common real-device expectation)
+    document.addEventListener('click', function (e) {
+      if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+    // Close on Escape (keyboard users)
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) { closeMenu(); }
+    });
+    // Safety: if window is resized past the mobile breakpoint while menu is open, reset state
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900 && navLinks.classList.contains('open')) { closeMenu(); }
     });
   }
 
