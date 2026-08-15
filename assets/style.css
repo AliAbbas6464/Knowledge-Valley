@@ -100,16 +100,16 @@ section{ padding:88px 0; }
   border-bottom:1px solid var(--line);
 }
 .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:var(--maxw); margin:0 auto; gap:12px; flex-wrap:nowrap; }
-.brand{ display:flex; align-items:center; gap:10px; min-width:0; flex:1 1 auto; overflow:hidden; }
+.brand{ display:flex; align-items:center; gap:10px; flex:0 1 auto; min-width:150px; }
 .brand img{ height:42px; width:auto; flex:none; }
 .brand-name{ font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:var(--navy); line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
 .brand-name span{ color:var(--cyan-dark); }
 .brand-sub{ display:block; font-family:var(--font-mono); font-size:.6rem; letter-spacing:.1em; color:var(--slate); text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-.nav-links{ display:flex; align-items:center; gap:6px; }
+.nav-links{ display:flex; align-items:center; gap:4px; }
 .nav-links a{
-  padding:10px 14px; border-radius:8px; font-weight:600; font-size:.92rem; color:var(--navy-soft);
-  transition:background .15s, color .15s;
+  padding:10px 12px; border-radius:8px; font-weight:600; font-size:.92rem; color:var(--navy-soft);
+  transition:background .15s, color .15s; white-space:nowrap; flex-shrink:0;
 }
 .nav-links a:hover{ background:var(--cyan-soft); color:var(--cyan-dark); }
 .nav-links a.active{ color:var(--cyan-dark); background:var(--cyan-soft); }
@@ -125,7 +125,7 @@ section{ padding:88px 0; }
 .nav-toggle.open span:nth-child(2){ opacity:0; }
 .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
-@media (max-width:900px){
+@media (max-width:1480px){
   .nav-links{
     position:fixed; inset:70px 0 auto 0; flex-direction:column; align-items:stretch;
     background:#fff; padding:12px; gap:2px; box-shadow:var(--shadow-md);
@@ -139,13 +139,17 @@ section{ padding:88px 0; }
     padding:14px 16px; min-height:44px; touch-action:manipulation;
   }
   .nav-toggle{ display:flex; }
+  .nav-cta .btn-primary{ padding:11px 18px; font-size:.88rem; }
 }
 
 @media (max-width:420px){
-  .nav{ padding:12px 16px; }
-  .brand img{ height:34px; }
-  .brand-name{ font-size:.92rem; }
-  .brand-sub{ display:none; }
+  .nav{ padding:12px 14px; gap:8px; }
+  .brand img{ height:32px; }
+  .brand-name{ font-size:.82rem; }
+  .brand-sub{ font-size:.52rem; letter-spacing:.06em; }
+  .nav-cta{ gap:6px; }
+  .nav-cta .btn-primary{ padding:9px 14px; font-size:.8rem; }
+  .nav-toggle{ min-width:38px; min-height:38px; padding:6px; }
 }
 
 /* ---------- Hero ---------- */
@@ -342,6 +346,22 @@ textarea{ resize:vertical; min-height:110px; }
 }
 .toast.show{ transform:translateY(0); opacity:1; }
 .toast .dot{ width:10px; height:10px; border-radius:50%; background:var(--cyan); flex:none; }
+
+/* ---------- Poster / News grid ---------- */
+.poster-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.poster-card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); transition:transform .18s ease, box-shadow .18s ease; }
+.poster-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.poster-card img{ width:100%; height:auto; display:block; }
+.poster-caption{ padding:16px 18px; }
+.poster-caption .date{ font-family:var(--font-mono); font-size:.7rem; color:var(--cyan-dark); text-transform:uppercase; letter-spacing:.06em; display:block; margin-bottom:4px; }
+.poster-caption h3{ font-size:1rem; margin-bottom:4px; }
+.poster-caption p{ font-size:.88rem; margin-bottom:0; }
+.poster-empty{
+  grid-column:1 / -1; text-align:center; padding:60px 30px; background:#fff; border:1px dashed var(--line);
+  border-radius:var(--radius); color:var(--slate);
+}
+@media (max-width:960px){ .poster-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .poster-grid{ grid-template-columns:1fr; } }
 
 /* ---------- Video gallery ---------- */
 .video-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }

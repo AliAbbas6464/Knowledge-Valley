@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     // Safety: if window is resized past the mobile breakpoint while menu is open, reset state
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 900 && navLinks.classList.contains('open')) { closeMenu(); }
+      if (window.innerWidth > 1480 && navLinks.classList.contains('open')) { closeMenu(); }
     });
   }
 
