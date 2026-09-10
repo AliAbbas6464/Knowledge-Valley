@@ -352,13 +352,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- FAQ / course syllabus download simulation ---------- */
-  document.querySelectorAll('[data-download]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      kvToast('Your syllabus PDF request has been received — check your email inbox.');
-    });
-  });
-
   /* ---------- Enroll quick-pick (course cards -> scroll to enroll form) ---------- */
   document.querySelectorAll('[data-scroll-to]').forEach(function (btn) {
     btn.addEventListener('click', function () {

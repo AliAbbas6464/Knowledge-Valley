@@ -457,6 +457,33 @@ textarea{ resize:vertical; min-height:110px; }
 .page-hero h1{ color:#fff; font-size:clamp(2rem,3.6vw,2.8rem); max-width:720px; }
 .page-hero p{ color:#C7D3E8; max-width:560px; font-size:1.05rem; }
 .breadcrumb{ font-family:var(--font-mono); font-size:.72rem; color:#9FB0CC; text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px; }
+/* ---------- Data table (syllabus/weightage) ---------- */
+.table-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+.data-table{ width:100%; border-collapse:collapse; min-width:480px; }
+.data-table th, .data-table td{ padding:16px 20px; text-align:left; font-size:.94rem; }
+.data-table thead th{
+  font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--slate); background:var(--paper); border-bottom:1px solid var(--line);
+}
+.data-table tbody tr:not(:last-child){ border-bottom:1px solid var(--line); }
+.data-table tbody td:first-child{ color:var(--ink); font-weight:600; }
+.data-table td.weight{ font-family:var(--font-mono); color:var(--cyan-dark); font-weight:600; white-space:nowrap; }
+
+/* ---------- Dash list (checklist-style bullets) ---------- */
+.dash-list{ display:flex; flex-direction:column; gap:10px; }
+.dash-list li{ font-size:.96rem; color:var(--slate); padding-left:20px; position:relative; }
+.dash-list li::before{ content:"—"; position:absolute; left:0; color:var(--cyan-dark); }
+
+/* ---------- Numbered step row ---------- */
+.step-row{ display:flex; gap:18px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--line); }
+.step-row:last-child{ border-bottom:none; }
+.step-num{
+  flex:none; width:38px; height:38px; border-radius:50%; background:var(--cyan-soft); color:var(--cyan-dark);
+  display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:600; font-size:.9rem;
+}
+.step-row h3{ font-size:1.05rem; margin-bottom:4px; }
+.step-row p{ font-size:.93rem; margin-bottom:0; }
+
 .breadcrumb a{ color:#9FB0CC; }
 .breadcrumb a:hover{ color:var(--cyan); }
 
@@ -481,6 +508,8 @@ textarea{ resize:vertical; min-height:110px; }
   .footer-grid{ grid-template-columns:1fr 1fr; gap:28px 20px; }
   .cta-band{ padding:36px 24px; }
   .stat-strip .wrap{ grid-template-columns:repeat(2,1fr); padding:24px 20px;}
+  .data-table th, .data-table td{ padding:12px 14px; font-size:.88rem; }
+  .step-row{ gap:14px; }
 }
 @media (max-width:420px){
   .footer-grid{ grid-template-columns:1fr; gap:26px; }
