@@ -123,6 +123,47 @@ section{ padding:88px 0; }
 .nav-cta .btn{ flex-shrink:0; white-space:nowrap; }
 .nav-toggle{ display:none; }
 
+/* ---------- Course Details dropdown ---------- */
+.nav-item{ position:relative; display:inline-flex; align-items:center; }
+.nav-drop-toggle{ display:inline-flex; align-items:center; gap:5px; }
+.nav-drop-toggle .caret{ font-size:.68em; line-height:1; transition:transform .15s ease; display:inline-block; }
+.nav-item.open .nav-drop-toggle .caret{ transform:rotate(180deg); }
+
+.dropdown-menu{
+  list-style:none; margin:0; padding:8px;
+  position:absolute; top:calc(100% + 6px); left:0;
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  box-shadow:var(--shadow-md); min-width:250px; z-index:200;
+  opacity:0; visibility:hidden; transform:translateY(6px);
+  transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+}
+.dropdown-menu li{ padding:0; }
+.dropdown-menu a{
+  display:block; padding:10px 12px; border-radius:8px;
+  font-weight:600; font-size:.88rem; color:var(--navy-soft); white-space:nowrap;
+}
+.dropdown-menu a:hover{ background:var(--cyan-soft); color:var(--cyan-dark); }
+
+@media (hover:hover) and (pointer:fine){
+  .nav-item.has-dropdown:hover .dropdown-menu,
+  .nav-item.has-dropdown:focus-within .dropdown-menu{
+    opacity:1; visibility:visible; transform:translateY(0);
+  }
+  .nav-item.has-dropdown:hover .nav-drop-toggle .caret,
+  .nav-item.has-dropdown:focus-within .nav-drop-toggle .caret{ transform:rotate(180deg); }
+}
+.nav-item.has-dropdown.open .dropdown-menu{
+  opacity:1; visibility:visible; transform:translateY(0);
+}
+
+@media (max-width:1499.98px){
+  .dropdown-menu{
+    position:fixed; left:14px; right:14px; top:70px;
+    min-width:0; max-width:none;
+  }
+  .dropdown-menu a{ white-space:normal; font-size:.92rem; padding:12px 14px; }
+}
+
 @media (min-width:1500px){
   .nav{ row-gap:0; flex-wrap:nowrap; }
   .nav-links{ order:2; flex-basis:auto; overflow-x:visible; }
@@ -513,4 +554,79 @@ textarea{ resize:vertical; min-height:110px; }
 }
 @media (max-width:420px){
   .footer-grid{ grid-template-columns:1fr; gap:26px; }
+}
+
+/* ---------- Gulf page: GCC Student Experience (featured testimonial slider) ---------- */
+.gulf-testimonials{ background:var(--paper); }
+.gulf-testimonial-feature{
+  position:relative; background:#fff; border:1px solid var(--line); border-radius:20px;
+  box-shadow:var(--shadow-lg); overflow:hidden;
+}
+.gulf-testimonial-track{ position:relative; }
+.gulf-testimonial-slide{
+  display:none; grid-template-columns:220px 1fr; gap:40px; align-items:center;
+  padding:44px 40px; opacity:0; transform:translateY(10px);
+  transition:opacity .45s ease, transform .45s ease;
+}
+.gulf-testimonial-slide.is-active{ display:grid; }
+.gulf-testimonial-slide.is-visible{ opacity:1; transform:translateY(0); }
+
+.gulf-testimonial-person{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:2px; }
+.gulf-testimonial-person img{
+  width:132px; height:132px; border-radius:50%; object-fit:cover;
+  border:4px solid var(--cyan-soft); box-shadow:var(--shadow-sm); margin-bottom:12px;
+}
+.gulf-testimonial-person strong{ font-family:var(--font-display); color:var(--navy); font-size:1.05rem; margin-top:4px; }
+.gulf-testimonial-person span{ color:var(--slate); font-size:.85rem; line-height:1.4; }
+.gulf-location{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono);
+  font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan-dark);
+  background:var(--cyan-soft); border:1px solid rgba(27,174,225,.25);
+  padding:4px 10px; border-radius:100px; margin-bottom:10px;
+}
+
+.gulf-testimonial-content{ position:relative; min-width:0; }
+.gulf-quote-mark{
+  font-family:var(--font-display); font-size:3rem; line-height:1; color:var(--cyan-soft);
+  display:block; margin-bottom:4px;
+}
+.gulf-testimonial-content p{ font-size:1.08rem; color:var(--ink); line-height:1.7; margin-bottom:18px; }
+.gulf-video-links{ display:flex; gap:10px; flex-wrap:wrap; }
+
+.gulf-testimonial-nav{
+  display:flex; align-items:center; justify-content:center; gap:20px;
+  padding:18px 24px 30px; border-top:1px solid var(--line);
+}
+.gulf-nav-btn{
+  background:transparent; border:2px solid var(--line); color:var(--navy);
+  font-weight:600; font-size:.86rem; padding:9px 18px; border-radius:100px;
+  transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+.gulf-nav-btn:hover{ border-color:var(--cyan); color:var(--cyan-dark); background:var(--cyan-soft); }
+.gulf-nav-btn:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
+.gulf-counter{ font-family:var(--font-mono); font-size:.8rem; color:var(--slate); letter-spacing:.05em; min-width:60px; text-align:center; }
+
+.gulf-testimonials-more{ text-align:center; margin-top:26px; }
+.gulf-testimonials-more a{
+  font-weight:600; font-size:.92rem; color:var(--slate);
+  border-bottom:1px solid var(--line); padding-bottom:2px;
+  transition:color .15s ease, border-color .15s ease;
+}
+.gulf-testimonials-more a:hover{ color:var(--cyan-dark); border-color:var(--cyan); }
+
+@media (max-width:780px){
+  .gulf-testimonial-slide{ grid-template-columns:1fr; padding:32px 22px; gap:20px; text-align:center; }
+  .gulf-testimonial-content p{ font-size:1rem; }
+  .gulf-quote-mark{ margin:0 auto 4px; }
+  .gulf-video-links{ justify-content:center; }
+}
+@media (max-width:420px){
+  .gulf-testimonial-feature{ border-radius:16px; }
+  .gulf-testimonial-slide{ padding:26px 16px; }
+  .gulf-testimonial-person img{ width:104px; height:104px; }
+  .gulf-testimonial-nav{ gap:10px; padding:14px 14px 22px; flex-wrap:wrap; }
+  .gulf-counter{ order:3; flex-basis:100%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .gulf-testimonial-slide{ transition:none; }
 }
