@@ -73,6 +73,55 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Course Details dropdown ---------- */
+  document.querySelectorAll('.nav-item.has-dropdown').forEach(function (item) {
+    var caret = item.querySelector('.caret');
+    var menu = item.querySelector('.dropdown-menu');
+    var header = document.querySelector('.site-header');
+    if (!caret || !menu) return;
+
+    function positionMenuMobile() {
+      if (window.innerWidth <= 1499 && header) {
+        menu.style.top = header.getBoundingClientRect().bottom + 'px';
+      } else {
+        menu.style.top = '';
+      }
+    }
+    function openDropdown() {
+      item.classList.add('open');
+      caret.setAttribute('aria-expanded', 'true');
+      positionMenuMobile();
+    }
+    function closeDropdown() {
+      item.classList.remove('open');
+      caret.setAttribute('aria-expanded', 'false');
+    }
+
+    caret.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (item.classList.contains('open')) { closeDropdown(); } else { openDropdown(); }
+    });
+    caret.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); caret.click(); }
+      if (e.key === 'Escape') { closeDropdown(); }
+    });
+
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeDropdown);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (item.classList.contains('open') && !item.contains(e.target)) { closeDropdown(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && item.classList.contains('open')) { closeDropdown(); }
+    });
+    window.addEventListener('resize', function () {
+      if (item.classList.contains('open')) { positionMenuMobile(); }
+    });
+  });
+
   /* ---------- Active nav link (based on filename) ---------- */
   var here = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.nav-links a[href]').forEach(function (a) {
@@ -358,6 +407,72 @@ document.addEventListener('DOMContentLoaded', function () {
       var target = document.querySelector(btn.dataset.scrollTo);
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+  });
+
+  /* ---------- Gulf page: GCC student testimonial slider ---------- */
+  document.querySelectorAll('[data-gulf-slider]').forEach(function (root) {
+    var slides = Array.prototype.slice.call(root.querySelectorAll('[data-gulf-slide]'));
+    var prevBtn = root.querySelector('[data-gulf-prev]');
+    var nextBtn = root.querySelector('[data-gulf-next]');
+    var currentEl = root.querySelector('[data-gulf-current]');
+    var totalEl = root.querySelector('[data-gulf-total]');
+    if (!slides.length || !prevBtn || !nextBtn) return;
+
+    var index = 0;
+    var total = slides.length;
+    var AUTOPLAY_MS = 6000;
+    var timer = null;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    function show(i) {
+      slides.forEach(function (slide, si) {
+        slide.classList.toggle('is-active', si === i);
+        slide.classList.remove('is-visible');
+      });
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { slides[i].classList.add('is-visible'); });
+      });
+      if (currentEl) currentEl.textContent = pad(i + 1);
+      if (totalEl) totalEl.textContent = pad(total);
+    }
+
+    function goTo(i) {
+      index = (i + total) % total;
+      show(index);
+    }
+    function next() { goTo(index + 1); }
+    function prev() { goTo(index - 1); }
+
+    function stopAutoplay() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function startAutoplay() {
+      if (reduceMotion) return;
+      stopAutoplay();
+      timer = setInterval(next, AUTOPLAY_MS);
+    }
+    function restartAutoplay() { stopAutoplay(); startAutoplay(); }
+
+    nextBtn.addEventListener('click', function () { next(); restartAutoplay(); });
+    prevBtn.addEventListener('click', function () { prev(); restartAutoplay(); });
+
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { next(); restartAutoplay(); }
+      if (e.key === 'ArrowLeft') { prev(); restartAutoplay(); }
+    });
+
+    // Pause on hover and on keyboard/focus interaction; resume when the user moves away
+    root.addEventListener('mouseenter', stopAutoplay);
+    root.addEventListener('mouseleave', startAutoplay);
+    root.addEventListener('focusin', stopAutoplay);
+    root.addEventListener('focusout', function () {
+      if (!root.contains(document.activeElement)) startAutoplay();
+    });
+
+    show(index);
+    startAutoplay();
   });
 
 });
