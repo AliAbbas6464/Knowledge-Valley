@@ -12,15 +12,27 @@
 <!-- Social sharing preview (Open Graph / Twitter) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="CMA USA Coaching in Pakistan & Online | Knowledge Valley">
-<meta property="og:description" content="Live CMA USA coaching for Part 1 & Part 2 in Pakistan and online. Expert-led classes, exam-focused preparation, testing system and Gulf-friendly timings.">
+<meta property="og:description" content="Live CMA USA coaching for Part 1 & Part 2 in Pakistan and online. Expert-led classes, exam-focused preparation, topic-wise testing, mock exams and Gulf-friendly timings.">
 <meta property="og:image" content="https://knowledgevalley.net/assets/logo.png">
 <meta property="og:url" content="https://knowledgevalley.net/courses">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CMA USA Coaching in Pakistan & Online | Knowledge Valley">
 <meta name="twitter:url" content="https://knowledgevalley.net/courses">
-<meta name="twitter:description" content="Live CMA USA coaching for Part 1 & Part 2 in Pakistan and online. Expert-led classes, exam-focused preparation, testing system and Gulf-friendly timings.">
+<meta name="twitter:description" content="Live CMA USA coaching for Part 1 & Part 2 in Pakistan and online. Expert-led classes, exam-focused preparation, topic-wise testing, mock exams and Gulf-friendly timings.">
 <meta name="twitter:image" content="https://knowledgevalley.net/assets/logo.png">
 <link rel="stylesheet" href="assets/style.css">
+
+<!-- Breadcrumb structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://knowledgevalley.net/" },
+    { "@type": "ListItem", "position": 2, "name": "Course Details", "item": "https://knowledgevalley.net/courses" }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -36,7 +48,13 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="courses.html">Course Details</a></li>
+      <li class="nav-item has-dropdown"><a href="courses.html" class="nav-drop-toggle">Course Details <span class="caret" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="Show Course Details submenu">▾</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="courses/cma-part-1/">CMA USA Part 1</a></li>
+          <li><a href="courses/cma-part-2/">CMA USA Part 2</a></li>
+          <li><a href="courses/cma-usa-coaching-gulf/">CMA USA Coaching for Gulf Students</a></li>
+        </ul>
+      </li>
       <li><a href="instructors.html">Instructors</a></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="videos.html">Videos</a></li>
@@ -73,7 +91,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Why Choose Knowledge Valley for CMA USA Coaching in Pakistan?</h2>
-      <p>Knowledge Valley provides live, mentor-led CMA USA coaching for students and working professionals in Pakistan and across the Gulf. Our CMA preparation program covers both Part 1 and Part 2 with exam-focused study materials, topic-wise testing, mock exams, practical guidance and flexible evening timings. Students benefit from the practical finance, accounting and auditing experience of our instructor, along with structured preparation designed to help them confidently prepare for the CMA USA examination.</p>
+      <p>Knowledge Valley provides live, mentor-led CMA USA coaching for students and working professionals in Pakistan and <a href="courses/cma-usa-coaching-gulf/">across the Gulf</a>. Our CMA preparation program covers both Part 1 and Part 2 with exam-focused study materials, topic-wise testing, mock exams, practical guidance and flexible evening timings. Students benefit from the practical finance, accounting and auditing experience of our instructor, along with structured preparation designed to help them confidently prepare for the CMA USA examination.</p>
     </div>
   </div>
 </section>
