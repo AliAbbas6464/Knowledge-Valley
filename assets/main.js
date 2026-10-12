@@ -3,28 +3,18 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   FORM DATA DELIVERY — Web3Forms (free, no backend needed)
+   WHATSAPP DELIVERY — enquiries are handed to WhatsApp
    ------------------------------------------------------------
-   This sends every form submission straight to your email inbox,
-   so you receive enquiries the moment someone submits — no
-   database server required.
-
-   ONE-TIME SETUP (2 minutes):
-   1. Go to https://web3forms.com
-   2. Enter the email address where you want submissions sent.
-   3. Click "Create Access Key" — you'll get a key instantly
-      (looks like: a1b2c3d4-e5f6-7890-abcd-ef1234567890).
-   4. Check your inbox for a confirmation email from Web3Forms
-      and confirm it (only needed once).
-   5. Paste that key below, replacing the placeholder text.
-   6. Re-upload assets/main.js to your host.
-
-   Until you paste a real key here, forms still validate and show
-   a success message, but the data isn't sent anywhere yet — it
-   will clearly say "(Demo mode)" in the confirmation toast as a
-   reminder.
+   On submit, the form builds a pre-filled WhatsApp message and opens
+   https://wa.me/<number>. The candidate must still press Send in
+   WhatsApp: the website cannot send a WhatsApp message by itself.
+   Number format for wa.me: digits only, country code first, no "+".
+   (+971 52 753 5393  ->  971527535393)
+   WhatsApp is the only delivery method: form data is not sent to any
+   other server, and the form is never cleared automatically.
    ------------------------------------------------------------ */
-const WEB3FORMS_ACCESS_KEY = "7a917c87-6ea1-4a87-a4bd-4bdc81357908";
+const KV_WHATSAPP_NUMBER = "971527535393";
+const KV_WHATSAPP_MAX_CHARS = 1500; // keeps the wa.me link at a safe length
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -69,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     // Safety: if window is resized past the mobile breakpoint while menu is open, reset state
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1480 && navLinks.classList.contains('open')) { closeMenu(); }
+      if (window.innerWidth > 960 && navLinks.classList.contains('open')) { closeMenu(); }
     });
   }
 
@@ -81,11 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!caret || !menu) return;
 
     function positionMenuMobile() {
-      if (window.innerWidth <= 1499 && header) {
-        menu.style.top = header.getBoundingClientRect().bottom + 'px';
-      } else {
-        menu.style.top = '';
-      }
+      menu.style.top = ''; // dropdown is positioned by CSS (absolute on desktop, inline on mobile)
     }
     function openDropdown() {
       item.classList.add('open');
@@ -312,62 +298,61 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      var successMsg = form.dataset.success || 'Thanks! We\u2019ll be in touch shortly.';
+      var successMsg = form.dataset.success || 'Opening WhatsApp \u2014 please press Send in WhatsApp to complete your enquiry.';
       var btn = form.querySelector('button[type="submit"]');
-      var originalText = btn ? btn.textContent : null;
 
-      function lockButton(label) {
-        if (!btn) return;
-        btn.textContent = label;
-        btn.disabled = true;
+      /* ----- Build the WhatsApp message from the fields this form actually has ----- */
+      function fieldLabel(el) {
+        var lab = el.id ? form.querySelector('label[for="' + el.id + '"]') : null;
+        var txt = lab ? lab.textContent : (el.name === 'rating' ? 'Rating' : el.name);
+        return txt.replace(/\*/g, '').replace(/\(optional\)/i, '').trim();
       }
-      function resetForm() {
-        setTimeout(function () {
-          form.reset();
-          form.querySelectorAll('.field').forEach(function (f) { f.classList.remove('invalid'); });
-          form.querySelectorAll('.star-picker span').forEach(function (s) { s.classList.remove('active'); });
-          if (btn) { btn.textContent = originalText; btn.disabled = false; }
-        }, 2200);
-      }
-
-      var keyReady = WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.indexOf('PASTE_YOUR') === -1;
-
-      if (!keyReady) {
-        /* No Web3Forms key connected yet — demo mode only. */
-        kvToast(successMsg + ' (Demo mode: connect Web3Forms to actually receive this.)');
-        lockButton('Sent ✓');
-        resetForm();
-        return;
-      }
-
-      lockButton('Sending…');
-
-      var payload = { access_key: WEB3FORMS_ACCESS_KEY };
-      new FormData(form).forEach(function (value, key) { payload[key] = value; });
-      payload.subject = 'New ' + (form.dataset.formType || 'form') + ' submission — Knowledge Valley website';
-      payload.from_name = 'Knowledge Valley Website';
-      payload.page = location.pathname.split('/').pop();
-
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (data.success) {
-          kvToast(successMsg);
-          lockButton('Sent ✓');
-        } else {
-          kvToast('Something went wrong sending this. Please try again or email us directly.');
-          if (btn) { btn.textContent = originalText; btn.disabled = false; }
+      var lines = [form.dataset.waTitle || 'New Knowledge Valley Enquiry', ''];
+      form.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (!el.name || el.type === 'submit' || el.type === 'button') return;
+        var val = (el.value || '').trim();
+        if (el.tagName === 'SELECT') {
+          val = el.selectedIndex > 0 ? el.options[el.selectedIndex].text.trim() : '';
         }
-        resetForm();
-      })
-      .catch(function () {
-        kvToast('Something went wrong sending this. Please try again or email us directly.');
-        if (btn) { btn.textContent = originalText; btn.disabled = false; }
+        if (el.name === 'rating') { val = (parseInt(val, 10) > 0) ? val + '/5' : ''; }
+        if (!val) return;
+        lines.push(fieldLabel(el) + ': ' + val);
       });
+      var waText = lines.join('\n');
+      if (waText.length > KV_WHATSAPP_MAX_CHARS) {
+        waText = waText.slice(0, KV_WHATSAPP_MAX_CHARS) + '\u2026 [shortened]';
+      }
+      var waUrl = 'https://wa.me/' + KV_WHATSAPP_NUMBER + '?text=' + encodeURIComponent(waText);
+
+      /* ----- Open WhatsApp immediately (inside the click, so pop-up blockers allow it) ----- */
+      var waWindow = window.open(waUrl, '_blank');
+      var opened = !!waWindow;
+      if (waWindow) { try { waWindow.opener = null; } catch (err) {} }
+
+      /* ----- Honest on-page status: the visitor still has to press Send in WhatsApp.
+         The form is NOT cleared and the button stays usable, so nothing the visitor typed is lost
+         if WhatsApp is blocked or they return without sending. ----- */
+      var status = form.querySelector('.form-status');
+      if (!status) {
+        status = document.createElement('div');
+        status.className = 'form-status';
+        status.setAttribute('role', 'status');
+        (btn || form).insertAdjacentElement('afterend', status);
+      }
+      status.innerHTML = '';
+      var what = form.dataset.formType === 'testimonial' ? 'your testimonial' : 'your enquiry';
+      var statusText = document.createElement('span');
+      statusText.textContent = (opened
+        ? 'Your WhatsApp message is ready. Please press Send in WhatsApp to submit ' + what + '. It has not been sent until you do. '
+        : 'Your WhatsApp message is ready, but your browser did not open WhatsApp automatically. Please use the link below, then press Send in WhatsApp. It has not been sent until you do. ');
+      var statusLink = document.createElement('a');
+      statusLink.href = waUrl;
+      statusLink.target = '_blank';
+      statusLink.rel = 'noopener';
+      statusLink.textContent = opened ? 'WhatsApp didn\u2019t open? Open it here.' : 'Open WhatsApp with my message';
+      status.appendChild(statusText);
+      status.appendChild(statusLink);
+      kvToast(opened ? successMsg : 'WhatsApp did not open automatically \u2014 please use the link below the form.');
     });
   });
 
