@@ -16,6 +16,26 @@
 const KV_WHATSAPP_NUMBER = "971527535393";
 const KV_WHATSAPP_MAX_CHARS = 1500; // keeps the wa.me link at a safe length
 
+/* ------------------------------------------------------------
+   GOOGLE ANALYTICS 4 — enquiry events (no personal data is sent)
+   whatsapp_click: a visitor clicks any link to wa.me.
+   enquiry_form_whatsapp_handoff: a form passed validation and the
+   WhatsApp message was prepared. The message is NOT sent until the
+   visitor presses Send in WhatsApp, so this is NOT a confirmed lead.
+   Standard page views, file downloads and outbound clicks come from
+   the Google tag / Enhanced measurement and are not duplicated here.
+   ------------------------------------------------------------ */
+function kvTrack(name, params) {
+  try { if (typeof window.gtag === 'function') window.gtag('event', name, params || {}); } catch (err) {}
+}
+document.addEventListener('click', function (e) {
+  var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me/"]') : null;
+  if (!a) return;
+  var where = a.classList.contains('whatsapp-float') ? 'floating_button'
+            : (a.closest('.form-status') ? 'form_fallback' : 'page_link');
+  kvTrack('whatsapp_click', { link_location: where });
+});
+
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Footer year ---------- */
@@ -108,13 +128,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- Active nav link (based on filename) ---------- */
-  var here = (location.pathname.split('/').pop() || 'index.html');
-  document.querySelectorAll('.nav-links a[href]').forEach(function (a) {
-    var target = a.getAttribute('href').split('/').pop();
-    if (target === here || (here === '' && target === 'index.html')) {
-      a.classList.add('active');
-    }
+  /* ---------- Active nav link (compare resolved page paths) ---------- */
+  function kvPagePath(p) {
+    return p.replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+  }
+  var kvHere = kvPagePath(location.pathname);
+  document.querySelectorAll('.nav-links > li > a[href]:not(.btn)').forEach(function (a) {
+    if (a.hash) return;
+    if (kvPagePath(a.pathname) === kvHere) { a.classList.add('active'); }
   });
 
   /* ---------- Back to top ---------- */
@@ -327,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
       /* ----- Open WhatsApp immediately (inside the click, so pop-up blockers allow it) ----- */
       var waWindow = window.open(waUrl, '_blank');
       var opened = !!waWindow;
+      kvTrack('enquiry_form_whatsapp_handoff', { form_type: form.dataset.formType || 'enquiry', whatsapp_opened: opened });
       if (waWindow) { try { waWindow.opener = null; } catch (err) {} }
 
       /* ----- Honest on-page status: the visitor still has to press Send in WhatsApp.
@@ -346,9 +368,16 @@ document.addEventListener('DOMContentLoaded', function () {
         ? 'Your WhatsApp message is ready. Please press Send in WhatsApp to submit ' + what + '. It has not been sent until you do. '
         : 'Your WhatsApp message is ready, but your browser did not open WhatsApp automatically. Please use the link below, then press Send in WhatsApp. It has not been sent until you do. ');
       var statusLink = document.createElement('a');
-      statusLink.href = waUrl;
+      /* The href is the plain WhatsApp number URL (no message text) so that Google Analytics'
+         Enhanced-measurement outbound-click tracking can never record the visitor's form details
+         in link_url. The prepared message is opened by the click handler below instead. */
+      statusLink.href = 'https://wa.me/' + KV_WHATSAPP_NUMBER;
       statusLink.target = '_blank';
       statusLink.rel = 'noopener';
+      statusLink.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        window.open(waUrl, '_blank', 'noopener');
+      });
       statusLink.textContent = opened ? 'WhatsApp didn\u2019t open? Open it here.' : 'Open WhatsApp with my message';
       status.appendChild(statusText);
       status.appendChild(statusLink);
