@@ -660,3 +660,90 @@ textarea{ resize:vertical; min-height:110px; }
 .form-note{ margin:12px 0 0; font-size:.85rem; color:var(--muted, #5b6b85); text-align:center; }
 .form-status{ margin-top:12px; padding:12px 14px; border:1px solid var(--line); border-radius:var(--radius); background:#f4f8ff; font-size:.9rem; color:var(--navy); }
 .form-status a{ color:var(--navy); font-weight:600; text-decoration:underline; }
+
+/* === Blog article pages (added 2026-10-22) === */
+/* Article body typography. Lists reuse .dash-list and tables reuse
+   .data-table / .table-wrap from the core styles above. */
+.article-meta-line{
+  font-family:var(--font-mono); font-size:.75rem; letter-spacing:.08em;
+  text-transform:uppercase; color:#9FB0CC; margin-top:20px;
+}
+.article-body{ max-width:820px; margin:0 auto; }
+.article-body p{ font-size:1.02rem; line-height:1.75; color:var(--slate); margin-bottom:1.1em; }
+.article-body h2{ font-size:1.55rem; margin:1.5em 0 .55em; }
+.article-body h2:first-child{ margin-top:0; }
+.article-body h3{ font-size:1.16rem; margin:1.35em 0 .45em; }
+.article-body a{ color:var(--cyan-dark); text-decoration:underline; overflow-wrap:anywhere; }
+.article-body strong{ color:var(--ink); }
+.article-body .table-wrap{ margin:26px 0; }
+.article-body .dash-list{ margin-bottom:1.1em; }
+.article-body .dash-list li{ font-size:1rem; line-height:1.65; }
+.article-ol{ margin:0 0 1.1em; padding-left:24px; display:flex; flex-direction:column; gap:10px; }
+.article-ol li{ font-size:1rem; line-height:1.65; color:var(--slate); }
+.article-ol li::marker{ color:var(--cyan-dark); font-weight:600; }
+.article-callout{
+  background:var(--cyan-soft); border:1px solid rgba(27,174,225,.3);
+  border-left:4px solid var(--cyan); border-radius:12px;
+  padding:20px 24px; margin:6px 0 26px;
+}
+.article-callout p{ color:var(--ink); margin:0; font-size:1rem; }
+.article-byline{
+  font-size:.86rem !important; color:var(--slate-light) !important;
+  border-top:1px solid var(--line); padding-top:16px; margin-top:34px;
+}
+.article-note{
+  font-size:.88rem !important; line-height:1.6 !important; color:var(--slate) !important;
+  background:var(--paper); border:1px solid var(--line); border-radius:10px;
+  padding:14px 18px; margin-top:18px;
+}
+
+/* Article tags */
+.tag-row{ display:flex; flex-wrap:wrap; gap:8px; max-width:820px; margin:36px auto 0; }
+.tag-chip{
+  font-size:.78rem; background:var(--paper); border:1px solid var(--line);
+  color:var(--navy-soft); padding:6px 13px; border-radius:100px; font-family:var(--font-mono);
+}
+
+/* Article cards (Blog & News listing + related articles) */
+.article-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.article-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.article-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.article-date{
+  font-family:var(--font-mono); font-size:.7rem; color:var(--cyan-dark);
+  text-transform:uppercase; letter-spacing:.06em; display:block; margin-bottom:8px;
+}
+.article-card h3{ font-size:1.08rem; margin-bottom:8px; }
+.article-card h3 a{ color:inherit; }
+.article-card h3 a:hover{ color:var(--cyan-dark); }
+.article-card p{ font-size:.9rem; margin-bottom:0; flex:1; }
+.article-more{ font-weight:600; font-size:.9rem; color:var(--cyan-dark); margin-top:14px; }
+.article-more:hover{ text-decoration:underline; }
+@media (max-width:960px){ .article-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .article-grid{ grid-template-columns:1fr; } }
+
+/* === Blog & News hub: anchor chips + study-note cards (Option A preview) === */
+.hub-nav{ display:flex; flex-wrap:wrap; gap:10px; padding:26px 0 2px; }
+.hub-nav a{
+  font-family:var(--font-mono); font-size:.8rem; letter-spacing:.03em;
+  background:#fff; border:1px solid var(--line); color:var(--navy-soft);
+  padding:8px 18px; border-radius:100px;
+  transition:border-color .15s ease, color .15s ease;
+}
+.hub-nav a:hover{ border-color:var(--cyan); color:var(--cyan-dark); }
+#articles, #study-notes, #news{ scroll-margin-top:96px; }
+.note-chip{
+  align-self:flex-start; font-family:var(--font-mono); font-size:.68rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--cyan-dark);
+  background:var(--cyan-soft); border:1px solid rgba(27,174,225,.25);
+  padding:5px 11px; border-radius:100px; margin-bottom:12px;
+}
+.card-links{ display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:14px; }
+.card-links .article-more{ margin-top:0; }
+
+/* === Study note pages: PDF download rows (added 2026-10-23) === */
+.note-download{ display:flex; justify-content:center; margin:4px 0 30px; }
+.note-download.bottom{ margin:32px 0 2px; }

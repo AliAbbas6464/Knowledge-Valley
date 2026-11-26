@@ -1,0 +1,46 @@
+/* Faculty page (body.fx) */
+.fx-hero{ padding:50px 0 60px; }
+.fx-hero-in{ display:grid; grid-template-columns:380px 1fr; gap:52px; align-items:center; }
+.fx-photo{ position:relative; border-radius:24px; overflow:hidden; box-shadow:0 28px 60px rgba(0,0,0,.4); border:4px solid rgba(255,255,255,.9); background:#fff; }
+.fx-photo img{ display:block; width:100%; height:auto; aspect-ratio:5/6.2; object-fit:cover; object-position:top; }
+.fx-badge{ position:absolute; left:14px; bottom:14px; background:var(--gold); color:#13264A; font:700 .82rem var(--sans); padding:8px 14px; border-radius:999px; display:flex; gap:6px; align-items:center; box-shadow:0 8px 20px rgba(0,0,0,.25); }
+.fx-badge .p1-ic{ width:16px; height:16px; stroke-width:2.6; }
+.fx-chips{ list-style:none; padding:0; margin:0 0 26px; display:flex; flex-wrap:wrap; gap:10px; }
+.fx-chips li{ display:flex; gap:7px; align-items:center; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.2); color:#fff; padding:9px 14px; border-radius:999px; font-weight:600; font-size:.9rem; }
+.fx-chips .p1-ic{ width:16px; height:16px; color:var(--gold); stroke-width:2.6; }
+.fx-stats{ background:var(--gold-soft); border-bottom:1px solid var(--line); }
+.fx-stats-in{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding-top:26px; padding-bottom:26px; text-align:center; }
+.fx-stats b{ display:block; font:800 2.1rem/1.1 var(--serif); color:var(--navy); } .fx-stats span{ font-weight:600; color:var(--slate); font-size:.92rem; }
+.fx-pil{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.fx-pil article{ background:#fff; border:1px solid var(--line); border-top:4px solid var(--gold); border-radius:16px; padding:26px 24px; box-shadow:0 10px 30px rgba(19,38,74,.06); }
+.fx-pil .p1-ic{ width:30px; height:30px; color:var(--gold-d); } .fx-pil h3{ margin:12px 0 8px; font-size:1.15rem; } .fx-pil p{ margin:0; }
+.fx-tl{ margin-top:28px; background:#fff; border:1px solid var(--line); border-radius:16px; padding:24px; }
+.fx-tr{ display:grid; grid-template-columns:150px 1fr; align-items:center; gap:14px; margin-bottom:12px; }
+.fx-tr > span{ font-weight:700; font-size:.9rem; color:var(--navy); }
+.fx-tr i{ display:block; justify-self:end; height:34px; border-radius:10px; background:var(--navy); color:#fff; font-style:normal; }
+.fx-tr i.t2{ background:#3E7CB1; } .fx-tr i.t3{ background:var(--gold); color:#13264A; }
+.fx-tr i b{ display:flex; height:100%; align-items:center; justify-content:center; font:700 .88rem var(--sans); white-space:nowrap; }
+.fx-tr{ grid-template-columns:150px 1fr; } .fx-tl p{ margin:12px 0 0; font-size:.92rem; }
+.fx-split{ display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; }
+.fx-quick{ background:#fff; border:1px solid var(--line); border-left:5px solid var(--gold); border-radius:16px; padding:28px; } .fx-quick h2{ margin:0 0 10px; font-size:clamp(1.6rem,3vw,2.2rem); } .fx-quick p{ margin:0; font-size:1.05rem; color:var(--ink); }
+.fx-areas{ list-style:none; padding:0; margin:14px 0 0; display:grid; gap:10px; } .fx-areas li{ display:flex; gap:10px; align-items:center; font-weight:500; color:var(--ink); } .fx-areas .p1-ic{ color:var(--green); width:20px; height:20px; stroke-width:2.4; }
+.fx-how{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.fx-two{ grid-template-columns:1fr 1fr; }
+.fx-more{ display:inline-flex; gap:6px; align-items:center; margin-top:14px; font-weight:700; color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:2px; } .fx-more .p1-ic{ width:16px; height:16px; }
+.fx-books{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.fx-books div{ background:linear-gradient(160deg,#13264A,#1B335F); color:#fff; border-radius:14px 14px 14px 14px; padding:24px 18px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between; border-left:8px solid var(--gold); box-shadow:0 12px 28px rgba(19,38,74,.2); }
+.fx-books span{ font:800 2rem var(--serif); color:var(--gold); opacity:.9; } body.fx .fx-books h3{ color:#fff; font-size:1.1rem; margin:0; }
+.fx-vg{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.fx-v{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px 12px 16px; display:block; transition:transform .18s,box-shadow .18s; } .fx-v:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(19,38,74,.12); }
+.fx-vt{ display:block; aspect-ratio:16/9; border-radius:10px; background:#13264A center/cover; position:relative; margin-bottom:12px; }
+.fx-vt i{ position:absolute; inset:0; margin:auto; width:54px; height:54px; border-radius:50%; background:rgba(212,168,67,.95); color:#13264A; display:grid; place-items:center; font-style:normal; font-size:1.1rem; padding-left:4px; box-shadow:0 8px 20px rgba(0,0,0,.3); }
+.fx-v small{ display:block; color:var(--gold-d); font:700 .74rem var(--sans); text-transform:uppercase; letter-spacing:.08em; } .fx-v b{ display:block; color:var(--navy); font-size:1rem; margin:3px 0 6px; line-height:1.35; } .fx-v em{ font-style:normal; color:var(--slate); font-size:.85rem; font-weight:600; }
+@media (max-width:1080px){ .fx-hero-in{ grid-template-columns:300px 1fr; gap:34px; } .fx-how,.fx-vg{ grid-template-columns:1fr 1fr; } .fx-split{ grid-template-columns:1fr; } .fx-books{ grid-template-columns:1fr 1fr; } .fx-pil{ grid-template-columns:1fr; } }
+@media (max-width:800px){ .fx-hero-in{ grid-template-columns:1fr; } .fx-photo{ max-width:300px; margin:0 auto; } .fx-hero-t{ text-align:left; } }
+@media (max-width:700px){ .fx-hero{ padding:28px 0 44px; } .fx-stats-in{ grid-template-columns:1fr 1fr; row-gap:18px; } .fx-how,.fx-vg,.fx-two{ grid-template-columns:1fr; } .fx-books{ grid-template-columns:1fr 1fr; } .fx-books div{ min-height:130px; padding:18px 14px; } .fx-tr{ grid-template-columns:1fr; gap:6px; } .fx-tl{ padding:18px 16px; } .fx-chips li{ font-size:.84rem; padding:8px 12px; } .fx-quick{ padding:22px 18px; } }
+.fx-chk{ display:grid; gap:12px; max-width:860px; margin:0 auto; }
+.fx-chk > div{ background:#fff; border:1px solid var(--line); border-left:5px solid var(--green); border-radius:12px; padding:16px 20px; display:grid; gap:4px; }
+.fx-chk b{ display:flex; gap:10px; align-items:center; color:var(--navy); font-size:1.05rem; } .fx-chk b .p1-ic{ color:var(--green); stroke-width:2.6; width:20px; height:20px; }
+.fx-chk span{ padding-left:30px; color:var(--slate); }
+body.fx:not(.ab) .h-menu > li:nth-child(3) > a::after{ transform:scaleX(0); }
+body.fx:not(.ab) .h-menu > li:nth-child(5) > a::after{ transform:scaleX(1); }
