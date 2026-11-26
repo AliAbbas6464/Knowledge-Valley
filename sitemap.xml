@@ -9,10 +9,6 @@
     <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://knowledgevalley.net/courses</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
     <loc>https://knowledgevalley.net/courses/cma-part-1/</loc>
     <lastmod>2026-10-22</lastmod>
   </url>
@@ -22,7 +18,7 @@
   </url>
   <url>
     <loc>https://knowledgevalley.net/gcc-coaching/</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://knowledgevalley.net/instructors</loc>
@@ -33,87 +29,80 @@
     <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://knowledgevalley.net/news</loc>
-    <lastmod>2026-10-24</lastmod>
-  </url>
-  <url>
     <loc>https://knowledgevalley.net/faq</loc>
     <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://knowledgevalley.net/blog/cma-vs-acca-uae/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-vs-cpa-ca-cfa/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-vs-cima/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-exam-pattern-2026/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-exam-dates-2026/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-usa-eligibility/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-syllabus-part-1-part-2/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-salary-saudi-arabia/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-salary-dubai-uae/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/jobs-after-cma/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/how-long-to-pass-cma/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-study-plan-working-professionals/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-exam-mistakes/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/cma-case-based-questions/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
-    <loc>https://knowledgevalley.net/blog/accountant-to-cfo-roadmap/</loc>
-    <lastmod>2026-10-22</lastmod>
-  </url>
-  <url>
     <loc>https://knowledgevalley.net/study-notes/coso-framework/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://knowledgevalley.net/study-notes/sarbanes-oxley-act/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://knowledgevalley.net/study-notes/fcpa-explained/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://knowledgevalley.net/study-notes/information-security-threats/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/privacy-policy.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-in-saudi-arabia/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-in-the-uae/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-in-qatar/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-salary-in-saudi-arabia/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-salary-in-the-uae/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-salary-by-country/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-exam-fees/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-after-acca/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/live-vs-recorded-cma-classes/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-case-based-questions-vs-essay/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/how-to-answer-cma-case-based-questions/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://knowledgevalley.net/blog/cma-case-based-question-example/</loc>
+    <lastmod>2026-11-25</lastmod>
   </url>
 </urlset>
